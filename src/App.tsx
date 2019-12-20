@@ -25,6 +25,7 @@ const App: React.FC = () => {
           rel="noopener noreferrer"
         >
           Learn React
+          <pre>{JSON.stringify(process.env, undefined, 2)}</pre>
         </a>
       </header>
     </Grommet>
