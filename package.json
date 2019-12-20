@@ -1,0 +1,19 @@
+{
+  "name": "parrot",
+  "version": "1.0.0",
+  "description": "Free music taste",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jonzy3000/parrot.git"
+  },
+  "author": "Jonzy3000",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Jonzy3000/parrot/issues"
+  },
+  "homepage": "https://github.com/Jonzy3000/parrot#readme"
+}
