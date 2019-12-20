@@ -2,6 +2,11 @@ import React from "react";
 import { Grommet } from "grommet";
 import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
+import userReducer from "./components/authentication/redux/userReducer";
+import { RootState } from "./types/RootState";
+import { BrowserRouter, Route } from "react-router-dom";
+import { LoginWindow } from "./components/LoginWindow";
+import PageLayout from "./components/PageLayout";
 
 const theme = {
   global: {
@@ -13,25 +18,18 @@ const theme = {
   }
 };
 
-const store = configureStore({ reducer: {} });
+const store = configureStore<RootState>({
+  reducer: { userState: userReducer }
+});
 
 const App: React.FC = () => {
   return (
     <Grommet theme={theme}>
       <Provider store={store}>
-        <header className="App-header">
-          <p>
-            Edit <code>src/App.tsx</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <BrowserRouter>
+          <Route path="/callback" component={LoginWindow} />
+          <Route exact path="/" component={() => <PageLayout />} />
+        </BrowserRouter>
       </Provider>
     </Grommet>
   );
