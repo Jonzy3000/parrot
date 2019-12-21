@@ -6,8 +6,8 @@ import userReducer from "./components/authentication/redux/userReducer";
 import userSessionReducer from "./components/authentication/redux/userSessionReducer";
 import { RootState } from "./types/RootState";
 import { BrowserRouter, Route } from "react-router-dom";
-import { LoginWindow } from "./components/LoginWindow";
-import PageLayout from "./components/PageLayout";
+import { LoginWindow } from "./components/authentication/LoginWindow";
+import PageLayout from "./components/common/PageLayout";
 
 const theme = {
   global: {
@@ -29,7 +29,7 @@ const App: React.FC = () => {
       <Provider store={store}>
         <BrowserRouter>
           <Route path="/callback" component={LoginWindow} />
-          <Route exact path="/" component={() => <PageLayout />} />
+          <Route exact path="/" component={PageLayout} />
         </BrowserRouter>
       </Provider>
     </Grommet>

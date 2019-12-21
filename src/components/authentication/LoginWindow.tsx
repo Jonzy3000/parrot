@@ -5,7 +5,7 @@ import { Redirect } from "react-router-dom";
 import {
   selectUserSessionState,
   storeUserSession
-} from "./authentication/redux/userSessionReducer";
+} from "./redux/userSessionReducer";
 
 export const LoginWindow = () => {
   const userSession = useSelector(selectUserSessionState);

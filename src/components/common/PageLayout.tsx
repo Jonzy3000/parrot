@@ -1,6 +1,6 @@
 import React from "react";
-import { withLogin } from "./authentication/withLogin";
-import { getUser } from "./authentication/redux/userReducer";
+import { withLogin } from "../authentication/withLogin";
+import { getUser } from "../authentication/redux/userReducer";
 import { useDispatch } from "react-redux";
 
 const PageLayout = React.memo(() => {
