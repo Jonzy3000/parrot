@@ -1,28 +1,30 @@
 import { useSelector, useDispatch } from "react-redux";
-import { selectUserState, storeUser } from "./authentication/redux/userReducer";
 import React from "react";
-import Axios from "axios";
+import axios from "axios";
 import { Redirect } from "react-router-dom";
+import {
+  selectUserSessionState,
+  storeUserSession
+} from "./authentication/redux/userSessionReducer";
 
 export const LoginWindow = () => {
-  const user = useSelector(selectUserState);
+  const userSession = useSelector(selectUserSessionState);
+
   const dispatch = useDispatch();
-  debugger;
   React.useEffect(() => {
-    debugger;
     dispatch(
-      storeUser({
-        name: "hello",
+      storeUserSession({
+        expirestAt: new Date(Date.now() + 3600 * 1000).getTime(),
         token: window.location.hash.split("&")[0].split("=")[1]
       })
     );
   }, [dispatch]);
 
-  if (user.isAuthenticated && user.user && user.user.token) {
-    Axios.defaults.headers.common = {
-      Authorization: `Bearer ${user.user.token}`
+  if (userSession.isAuthenticated) {
+    axios.defaults.headers.common = {
+      Authorization: `Bearer ${userSession.token}`
     };
   }
 
-  return user.isAuthenticated ? <Redirect to="/" /> : <div>ERROR</div>;
+  return userSession.isAuthenticated ? <Redirect to="/" /> : <div>ERROR</div>;
 };

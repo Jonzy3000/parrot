@@ -1,30 +1,24 @@
+import { UserProfile } from "./../../../services/spotifyApi/userProfile";
 import { RootState } from "./../../../types/RootState";
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction, Dispatch } from "@reduxjs/toolkit";
+import { User } from "../../../types/User";
 
-export interface UserState {
-  isAuthenticated: boolean;
-  user?: User;
-}
-
-export interface User {
-  name: string;
-  token: string;
-}
-
-export const selectUserState = (state: RootState): UserState => state.userState;
+export const selectUserState = (state: RootState): User => state.userState;
 
 const userSlice = createSlice({
   name: "user",
-  initialState: { isAuthenticated: false } as UserState,
+  initialState: {} as User,
   reducers: {
-    storeUser: (state: UserState, action: PayloadAction<User>) => ({
-      isAuthenticated: true,
-      user: action.payload
-    })
+    storeUser: (_: User, action: PayloadAction<User>) => action.payload
   }
 });
+
+const getUser = () => async (dispatch: Dispatch) => {
+  const user = await UserProfile.getCurrentUserProfile();
+  dispatch(storeUser(user));
+};
 
 export default userSlice.reducer;
 
 const { storeUser } = userSlice.actions;
-export { storeUser };
+export { storeUser, getUser };

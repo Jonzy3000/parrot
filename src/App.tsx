@@ -3,6 +3,7 @@ import { Grommet } from "grommet";
 import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
 import userReducer from "./components/authentication/redux/userReducer";
+import userSessionReducer from "./components/authentication/redux/userSessionReducer";
 import { RootState } from "./types/RootState";
 import { BrowserRouter, Route } from "react-router-dom";
 import { LoginWindow } from "./components/LoginWindow";
@@ -19,7 +20,7 @@ const theme = {
 };
 
 const store = configureStore<RootState>({
-  reducer: { userState: userReducer }
+  reducer: { userState: userReducer, userSessionState: userSessionReducer }
 });
 
 const App: React.FC = () => {

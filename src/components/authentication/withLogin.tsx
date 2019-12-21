@@ -1,13 +1,12 @@
 import { useSelector } from "react-redux";
-import { selectUserState } from "./redux/userReducer";
 import React from "react";
 import { ImplicitGrant } from "./implicitGrant";
+import { selectUserSessionState } from "./redux/userSessionReducer";
 
 export const withLogin = (Component: React.ElementType) =>
   React.memo(props => {
-    const userState = useSelector(selectUserState);
-    debugger;
-    if (userState.isAuthenticated) {
+    const userSession = useSelector(selectUserSessionState);
+    if (userSession.isAuthenticated) {
       return <Component {...props} />;
     }
 
