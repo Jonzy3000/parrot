@@ -7,7 +7,7 @@ import userSessionReducer from "./components/authentication/redux/userSessionRed
 import { RootState } from "./types/RootState";
 import { BrowserRouter, Route } from "react-router-dom";
 import { LoginWindow } from "./components/authentication/LoginWindow";
-import PageLayout from "./components/common/PageLayout";
+import { Home } from "./views/Home";
 
 const theme = {
   global: {
@@ -29,7 +29,7 @@ const App: React.FC = () => {
       <Provider store={store}>
         <BrowserRouter>
           <Route path="/callback" component={LoginWindow} />
-          <Route exact path="/" component={PageLayout} />
+          <Route exact path="/" component={Home} />
         </BrowserRouter>
       </Provider>
     </Grommet>

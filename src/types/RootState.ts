@@ -1,7 +1,7 @@
 import { UserSession } from "../components/authentication/redux/userSessionReducer";
-import { User } from "./User";
+import { UserState } from "./User";
 
 export interface RootState {
-  userState: User;
+  userState: UserState;
   userSessionState: UserSession;
 }

@@ -5,3 +5,7 @@ export interface User {
     url: string;
   };
 }
+
+export interface UserState extends User {
+  isLoading: boolean;
+}

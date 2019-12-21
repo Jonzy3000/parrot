@@ -2,27 +2,20 @@ import React from "react";
 import { withLogin } from "../authentication/withLogin";
 import { getUser } from "../authentication/redux/userReducer";
 import { useDispatch } from "react-redux";
+import { Header } from "./Header";
+import { Main } from "grommet";
 
-const PageLayout = React.memo(() => {
+const PageLayout = React.memo(({ children }) => {
   const dispatch = useDispatch();
   React.useEffect(() => {
     dispatch(getUser());
   }, [dispatch]);
 
   return (
-    <header className="App-header">
-      <p>
-        Edit <code>src/App.tsx</code> and save to reload.
-      </p>
-      <a
-        className="App-link"
-        href="https://reactjs.org"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Learn React
-      </a>
-    </header>
+    <div>
+      <Header />
+      <Main pad="large">{children}</Main>
+    </div>
   );
 });
 
