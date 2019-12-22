@@ -17,7 +17,6 @@ export const PlaylistCard = React.memo(({ id }: Props) => {
       round="small"
       elevation="medium"
       overflow="hidden"
-      animation="fadeIn"
       onClick={() => dispatch(push(`/playlists/${playlist.id}`))}
     >
       <Box height="small">

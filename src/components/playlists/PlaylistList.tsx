@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPlaylists, selectPlaylistsIds } from "./redux/playlistsReducer";
-import { Grid } from "grommet";
+import { Grid, Box } from "grommet";
 import { PlaylistCard } from "./PlaylistCard";
 
 export const PlaylistLists = React.memo(() => {
@@ -14,8 +14,13 @@ export const PlaylistLists = React.memo(() => {
   return (
     <div>
       <Grid gap="large" columns={"medium"}>
-        {playlists.map(id => (
-          <PlaylistCard key={id} id={id} />
+        {playlists.map((id, index) => (
+          <Box
+            key={id}
+            animation={{ delay: 300 * (index + 1), type: "fadeIn" }}
+          >
+            <PlaylistCard id={id} />
+          </Box>
         ))}
       </Grid>
     </div>

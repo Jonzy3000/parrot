@@ -25,7 +25,7 @@ export const PlaylistView = React.memo(({ match }: Props) => {
       {playlist && (
         <>
           <Heading level="1">{playlist.name}</Heading>
-          <Box animation="zoomIn">
+          <Box animation={{ delay: 250, type: "fadeIn" }}>
             <DataTable
               columns={[
                 { property: "name", header: "Title" },
