@@ -6,7 +6,8 @@ import {
   selectPlaylist
 } from "../components/playlists/redux/playlistsReducer";
 import { RootState } from "../types/RootState";
-import { DataTable, Heading, Box } from "grommet";
+import { Heading, Box } from "grommet";
+import { TrackList } from "../components/playlists/TrackListTable";
 
 interface Props {
   match: match<{ id: string }>;
@@ -26,14 +27,7 @@ export const PlaylistView = React.memo(({ match }: Props) => {
         <>
           <Heading level="1">{playlist.name}</Heading>
           <Box animation={{ delay: 250, type: "fadeIn" }}>
-            <DataTable
-              columns={[
-                { property: "name", header: "Title" },
-                { property: "artists.combinedLabel", header: "Artists" },
-                { property: "album.name", header: "Album" }
-              ]}
-              data={playlist.tracks.items}
-            ></DataTable>
+            <TrackList tracks={playlist.tracks.items} />
           </Box>
         </>
       )}
