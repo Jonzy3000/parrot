@@ -12,6 +12,7 @@ interface Props {
 export const PlaylistCard = React.memo(({ id }: Props) => {
   const playlist = useSelector((state: RootState) => selectPlaylist(state, id));
   const dispatch = useDispatch();
+
   return (
     <Box
       round="small"
