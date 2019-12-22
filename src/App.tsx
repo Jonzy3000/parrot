@@ -15,6 +15,9 @@ import {
   ConnectedRouter
 } from "connected-react-router";
 import { createBrowserHistory } from "history";
+import { PlaylistView } from "./views/PlaylistView";
+import PageLayout from "./components/common/PageLayout";
+import { withLogin } from "./components/authentication/withLogin";
 
 const theme = {
   global: {
@@ -43,10 +46,13 @@ const App: React.FC = () => {
   return (
     <Grommet theme={theme}>
       <Provider store={store}>
-        <ConnectedRouter history={history}>
-          <Route path="/callback" component={LoginWindow} />
-          <Route exact path="/" component={Home} />
-        </ConnectedRouter>
+        <PageLayout>
+          <ConnectedRouter history={history}>
+            <Route path="/callback" component={LoginWindow} />
+            <Route exact path="/" component={withLogin(Home)} />
+            <Route path="/playlists/:id" component={withLogin(PlaylistView)} />
+          </ConnectedRouter>
+        </PageLayout>
       </Provider>
     </Grommet>
   );

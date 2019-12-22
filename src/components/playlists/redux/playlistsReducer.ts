@@ -25,7 +25,13 @@ const playlistSlice = createSlice({
         },
         {}
       )
-    })
+    }),
+    storePlaylist: (
+      state: PlaylistState,
+      { payload }: PayloadAction<Playlist>
+    ) => {
+      state.byId[payload.id] = payload;
+    }
   }
 });
 
@@ -36,5 +42,10 @@ const getPlaylists = () => async (dispatch: Dispatch) => {
   dispatch(storePlaylists(playlists));
 };
 
-const { storePlaylists } = playlistSlice.actions;
-export { storePlaylists, getPlaylists };
+const getPlaylist = (id: string) => async (dispatch: Dispatch) => {
+  const playlist = await Playlists.getPlaylist(id);
+  dispatch(storePlaylist(playlist));
+};
+
+const { storePlaylists, storePlaylist } = playlistSlice.actions;
+export { storePlaylists, getPlaylists, storePlaylist, getPlaylist };

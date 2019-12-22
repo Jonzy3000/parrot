@@ -6,5 +6,5 @@ import { Heading } from "grommet";
 export const Welcome = React.memo(() => {
   const user = useSelector(selectUserState);
 
-  return !user.isLoading ? <Heading>Welcome, {user.name}</Heading> : null;
+  return user.name != null ? <Heading>Welcome, {user.name}</Heading> : null;
 });

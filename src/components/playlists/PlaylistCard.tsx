@@ -1,8 +1,9 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { selectPlaylist } from "./redux/playlistsReducer";
 import { RootState } from "../../types/RootState";
 import { Box, Image, Heading, Text } from "grommet";
+import { push } from "connected-react-router";
 
 interface Props {
   id: string;
@@ -10,8 +11,15 @@ interface Props {
 
 export const PlaylistCard = React.memo(({ id }: Props) => {
   const playlist = useSelector((state: RootState) => selectPlaylist(state, id));
+  const dispatch = useDispatch();
   return (
-    <Box round="small" elevation="medium" overflow="hidden">
+    <Box
+      round="small"
+      elevation="medium"
+      overflow="hidden"
+      animation="fadeIn"
+      onClick={() => dispatch(push(`/playlists/${playlist.id}`))}
+    >
       <Box height="small">
         {playlist.images[0] && (
           <Image src={playlist.images[0].url} fit="cover" />

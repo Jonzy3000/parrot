@@ -26,5 +26,10 @@ export const LoginWindow = () => {
     };
   }
 
-  return userSession.isAuthenticated ? <Redirect to="/" /> : <div>ERROR</div>;
+  const path = localStorage.getItem("before_redirect") || "/";
+  return userSession.isAuthenticated ? (
+    <Redirect to={path} />
+  ) : (
+    <div>ERROR</div>
+  );
 };
