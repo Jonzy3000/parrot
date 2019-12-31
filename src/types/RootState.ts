@@ -1,3 +1,4 @@
+import { RecommendationsState } from "./../components/playlists/redux/recommendationsRedcuer";
 import { UserSession } from "../components/authentication/redux/userSessionReducer";
 import { UserState } from "./User";
 import { PlaylistState } from "./PlaylistState";
@@ -7,5 +8,6 @@ export interface RootState {
   userState: UserState;
   userSessionState: UserSession;
   playlistsState: PlaylistState;
+  recommendationsState: RecommendationsState;
   router: RouterState;
 }

@@ -10,3 +10,7 @@ export const Avatar = React.memo(({ url, ...rest }: { url: string }) => (
     {...rest}
   />
 ));
+
+export const SquareAvatar = React.memo(({ url, ...rest }: { url: string }) => (
+  <Box height="xxsmall" width="xxsmall" background={url} {...rest} />
+));

@@ -19,6 +19,7 @@ export interface Playlist {
 
 export interface Track {
   id: string;
+  uri: string;
   name: string;
   artists: CombindedArtists;
   durationMs: number;
@@ -35,8 +36,10 @@ export interface Artist {
   id: string;
   url: string;
   name: string;
+  images?: { height: number; url: string; width: number }[];
 }
 
 export interface Album {
   name: string;
+  images: { height: number; url: string; width: number }[];
 }
