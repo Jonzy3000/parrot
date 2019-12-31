@@ -71,3 +71,16 @@ const App: React.FC = () => {
 };
 
 export default App;
+
+/**
+ * TODO:
+ * - Tidy up api converters
+ * - Tidy up types being all over the place
+ * - Make the NewPlaylist form look good
+ * - Fix button on mobile
+ * - Add the ability to remove songs from playlist preview
+ * - Add the ability to add songs to already created playlist
+ * - Tidy up the table view of a playlist
+ * - Add a landing page
+ * - Add the ability to logout
+ */
