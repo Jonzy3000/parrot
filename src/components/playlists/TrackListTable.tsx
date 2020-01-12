@@ -1,5 +1,12 @@
 import React from "react";
-import { Text, Box, Grid, DataTable, ResponsiveContext } from "grommet";
+import {
+  Text,
+  Box,
+  Grid,
+  DataTable,
+  ResponsiveContext,
+  InfiniteScroll
+} from "grommet";
 import { Track } from "../../types/Playlist";
 import { Clock } from "grommet-icons";
 
@@ -56,28 +63,30 @@ const TrackListTable = React.memo(({ tracks }: { tracks?: Track[] }) => (
 
 const TrackListCard = React.memo(({ tracks }: { tracks?: Track[] }) => (
   <Box>
-    {tracks?.map((it, index) => (
-      <Box
-        pad="medium"
-        key={it.id + index}
-        border={{ color: "accent-2", side: "bottom" }}
-      >
-        <Grid gap="small" justifyContent="between" columns={["auto", "auto"]}>
-          <Box>
-            <Text truncate={true} size="large">
-              {it.name}
-            </Text>
-            <Text truncate={true} color="dark-2" size="medium">
-              {it.artists.combinedLabel} - {it.album.name}
-            </Text>
-          </Box>
-          <Box alignSelf="center">
-            <Text truncate={true} margin="none">
-              {toMMSS(it.durationMs)}
-            </Text>
-          </Box>
-        </Grid>
-      </Box>
-    ))}
+    <InfiniteScroll items={tracks}>
+      {(track, index) => (
+        <Box
+          pad="medium"
+          key={track.id + index}
+          border={{ color: "accent-2", side: "bottom" }}
+        >
+          <Grid gap="small" justifyContent="between" columns={["auto", "auto"]}>
+            <Box>
+              <Text truncate={true} size="large">
+                {track.name}
+              </Text>
+              <Text truncate={true} color="dark-2" size="medium">
+                {track.artists.combinedLabel} - {track.album.name}
+              </Text>
+            </Box>
+            <Box alignSelf="center">
+              <Text truncate={true} margin="none">
+                {toMMSS(track.durationMs)}
+              </Text>
+            </Box>
+          </Grid>
+        </Box>
+      )}
+    </InfiniteScroll>
   </Box>
 ));
