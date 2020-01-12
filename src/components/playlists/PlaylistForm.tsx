@@ -62,28 +62,25 @@ export const PlaylistForm = React.memo(() => {
     setValue("public", isPublic);
   }, [isPublic, setValue]);
 
+  const onSumbit = handleSubmit((data: FormData) => {
+    dispatch(
+      storeRecommendationPlaylistDetails({
+        name: data.name,
+        description: data.description,
+        isPublic: data.public
+      })
+    );
+    dispatch(
+      fetchRecommendations({
+        artists: Object.values(data.selected.artists),
+        tracks: Object.values(data.selected.tracks)
+      })
+    );
+    dispatch(push("/preview-playlist"));
+  });
+
   return (
-    <Form
-      name="New Playlist"
-      onSubmit={handleSubmit((data: FormData) => {
-        dispatch(
-          storeRecommendationPlaylistDetails({
-            name: data.name,
-            description: data.description,
-            isPublic: data.public
-          })
-        );
-
-        dispatch(
-          fetchRecommendations({
-            artists: Object.values(data.selected.artists),
-            tracks: Object.values(data.selected.tracks)
-          })
-        );
-
-        dispatch(push("/preview-playlist"));
-      })}
-    >
+    <Form name="New Playlist" onSubmit={onSumbit}>
       <Grid columns={["auto"]} gap="medium">
         <Box>
           <Text>Name</Text>

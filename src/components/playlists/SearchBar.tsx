@@ -16,14 +16,9 @@ const Tag = ({ onRemove, children }: TagProps) => {
       direction="row"
       align="center"
       justify="between"
-      border={{ color: "neutral-3", size: "small" }}
-      pad="small"
-      margin={{ vertical: "xxsmall", horizontal: "xxsmall" }}
-      round="small"
+      pad={{ horizontal: "medium", vertical: "small" }}
     >
-      <Text truncate size="medium" margin={{ right: "xxsmall" }}>
-        {children}
-      </Text>
+      {children}
       {onRemove && <FormClose size="medium" />}
     </Box>
   );
@@ -62,14 +57,12 @@ export const SearchBar = React.memo((props: SearchBarProps) => {
     artists: {},
     tracks: {}
   });
-
   const [suggestions, setSuggestions] = useState<{
     artists: Artist[];
     tracks: Track[];
   }>({ artists: [], tracks: [] });
 
-  const onChange = (event: { target: { value: string } }) => {
-    console.log(event);
+  const onSearchChange = (event: { target: { value: string } }) => {
     const { value: newValue } = event.target;
     setSearchValue(newValue);
     if (newValue.trim().length === 0) {
@@ -89,6 +82,7 @@ export const SearchBar = React.memo((props: SearchBarProps) => {
       artists: { ...prevSelected.artists, [artist.id]: artist }
     }));
   };
+
   const addToTracks = (track: Track) => {
     setSelected(prevSelected => ({
       ...prevSelected,
@@ -112,30 +106,50 @@ export const SearchBar = React.memo((props: SearchBarProps) => {
     });
   };
 
-  const renderTags = () => [
-    ...Object.keys(selected.tracks).map((key: string) => (
-      <Tag key={key} onRemove={() => removeFromTracks(key)}>
-        {selected.tracks[key].name}
-      </Tag>
+  const getBGColor = (index: number): string =>
+    index % 2 === 0 ? "light-1" : "white";
+
+  const renderSelected = () => [
+    ...Object.keys(selected.tracks).map((key: string, index: number) => (
+      <Box key={key} background={getBGColor(index)}>
+        <Tag onRemove={() => removeFromTracks(key)}>
+          <Box direction="row">
+            <Text>{selected.tracks[key].name} - </Text>
+            <Text color="dark-3">
+              {selected.tracks[key].artists.combinedLabel}
+            </Text>
+          </Box>
+        </Tag>
+      </Box>
     )),
-    ...Object.keys(selected.artists).map((key: string) => (
-      <Tag key={key} onRemove={() => removeFromArtists(key)}>
-        {selected.artists[key].name}
-      </Tag>
+    ...Object.keys(selected.artists).map((key: string, index: number) => (
+      <Box
+        key={key}
+        background={getBGColor(index + Object.keys(selected.tracks).length)}
+      >
+        <Tag onRemove={() => removeFromArtists(key)}>
+          <Box direction="row">
+            <Text>{selected.artists[key].name}</Text>
+          </Box>
+        </Tag>
+      </Box>
     ))
   ];
 
   return (
     <Box>
-      {renderTags()}
-      <Box pad={{ horizontal: "small" }} align="center" direction="row" border>
-        <SearchIcon />
-        <TextInput
-          plain
-          value={searchValue}
-          onChange={onChange}
-          placeholder="Search for some things to base your recommendation on..."
-        />
+      <Text>Suggestions</Text>
+      <Box round="xxsmall" border>
+        {renderSelected()}
+        <Box pad={{ horizontal: "small" }} align="center" direction="row">
+          <SearchIcon />
+          <TextInput
+            plain
+            value={searchValue}
+            onChange={onSearchChange}
+            placeholder="Search for some things to base your recommendation on..."
+          />
+        </Box>
       </Box>
       {searchValue.trim().length > 0 && (
         <Box>
