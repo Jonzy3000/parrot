@@ -1,5 +1,5 @@
 import React from "react";
-import { Grommet } from "grommet";
+import { Grommet, ThemeType } from "grommet";
 import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
 import userReducer from "./components/authentication/redux/userReducer";
@@ -22,13 +22,14 @@ import PageLayout from "./components/common/PageLayout";
 import { withLogin } from "./components/authentication/withLogin";
 import { NewPlaylistView } from "./views/NewPlaylistView";
 
-const theme = {
+const theme: ThemeType = {
   global: {
     font: {
       family: "Roboto",
       size: "18px",
       height: "20px"
-    }
+    },
+    input: { weight: 100 }
   }
 };
 

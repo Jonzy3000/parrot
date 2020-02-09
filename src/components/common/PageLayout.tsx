@@ -8,7 +8,15 @@ const PageLayout = React.memo(({ children }) => {
   return (
     <div>
       <Header />
-      <Main pad={size === "small" ? "medium" : "xlarge"}>{children}</Main>
+      <Main
+        pad={
+          size === "small"
+            ? { vertical: "small", horizontal: "medium" }
+            : { vertical: "medium", horizontal: "xlarge" }
+        }
+      >
+        {children}
+      </Main>
     </div>
   );
 });

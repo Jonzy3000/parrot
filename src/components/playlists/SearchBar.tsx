@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Search } from "../../services/spotifyApi/search";
 import { TextInput, Text, Box, Button } from "grommet";
-import { Image } from "../../types/Image";
 import { Artist } from "../../types/Artist";
 import { Track } from "../../types/Track";
 import { FormClose, Search as SearchIcon } from "grommet-icons";
-import { Avatar, SquareAvatar } from "../common/Avatar";
+import { TrackItem } from "./TrackItem";
+import { ArtistItem } from "./ArtistItem";
 
 interface TagProps {
   onRemove: () => void;
@@ -36,10 +36,6 @@ const Tag = ({ onRemove, children }: TagProps) => {
     );
   }
   return tag;
-};
-
-const smallestImage = (images: Image[]) => {
-  return images.sort((a, b) => (a.height || 0) - (b.height || 0))[0];
 };
 
 export interface SearchBarResult {
@@ -114,7 +110,7 @@ export const SearchBar = React.memo((props: SearchBarProps) => {
       <Box key={key} background={getBGColor(index)}>
         <Tag onRemove={() => removeFromTracks(key)}>
           <Box direction="row">
-            <Text>{selected.tracks[key].name} - </Text>
+            <Text>{selected.tracks[key].name} -</Text>
             <Text color="dark-3">
               {selected.tracks[key].artists.combinedLabel}
             </Text>
@@ -139,70 +135,45 @@ export const SearchBar = React.memo((props: SearchBarProps) => {
   return (
     <Box>
       <Text>Suggestions</Text>
-      <Box round="xxsmall" border>
+      <Box round="xxsmall">
         {renderSelected()}
-        <Box pad={{ horizontal: "small" }} align="center" direction="row">
+        <Box
+          pad={{ horizontal: "small" }}
+          align="center"
+          direction="row"
+          background="light-2"
+          round="xsmall"
+          onClick={() => {}}
+        >
           <SearchIcon />
           <TextInput
             plain
             value={searchValue}
             onChange={onSearchChange}
             placeholder="Search for some things to base your recommendation on..."
+            suggestions={[
+              ...suggestions.tracks.map((track: Track) => ({
+                label: (
+                  <TrackItem
+                    key={track.id}
+                    track={track}
+                    onClick={() => addToTracks(track)}
+                  />
+                )
+              })),
+              ...suggestions.artists.map((artist: Artist) => ({
+                label: (
+                  <ArtistItem
+                    artist={artist}
+                    key={artist.id}
+                    onClick={() => addToArtists(artist)}
+                  />
+                )
+              }))
+            ]}
           />
         </Box>
       </Box>
-      {searchValue.trim().length > 0 && (
-        <Box>
-          {suggestions.tracks.map((track: Track) => (
-            <TrackItem
-              key={track.id}
-              track={track}
-              onClick={() => addToTracks(track)}
-            />
-          ))}
-          {suggestions.artists.map((artist: Artist) => (
-            <ArtistItem
-              artist={artist}
-              key={artist.id}
-              onClick={() => addToArtists(artist)}
-            />
-          ))}
-        </Box>
-      )}
     </Box>
   );
 });
-
-// TODO add default icon if no album images
-const TrackItem = React.memo(
-  ({ track, onClick }: { track: Track; onClick?: () => void }) => (
-    <Box pad="small" align="center" direction="row" onClick={onClick}>
-      <SquareAvatar url={`url(${smallestImage(track.album.images).url})`} />
-      <Box margin={{ left: "small" }}>
-        <Text truncate size="medium">
-          {track.name}
-        </Text>
-        <Text truncate color="dark-3">
-          Song - {track.artists.combinedLabel}
-        </Text>
-      </Box>
-    </Box>
-  )
-);
-
-// TODO add default icon if no artists images
-const ArtistItem = React.memo(
-  ({ artist, onClick }: { artist: Artist; onClick?: () => void }) => (
-    <Box pad="small" align="center" direction="row" onClick={onClick}>
-      {artist.images !== undefined && artist.images.length > 0 && (
-        <Avatar url={`url(${smallestImage(artist.images).url})`} />
-      )}
-      <Box margin={{ left: "small" }}>
-        <Text truncate size="medium">
-          {artist.name}
-        </Text>
-        <Text color="dark-3">Artist</Text>
-      </Box>
-    </Box>
-  )
-);
