@@ -1,6 +1,7 @@
 import { Recommendations } from "./../../../services/spotifyApi/recomendations";
 import { createSlice, Dispatch, PayloadAction } from "@reduxjs/toolkit";
-import { Track, Artist } from "../../../types/Playlist";
+import { Artist } from "../../../types/Artist";
+import { Track } from "../../../types/Track";
 
 export interface PlaylistDetails {
   name: string;

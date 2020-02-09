@@ -1,4 +1,5 @@
-import { Artist, Track } from "./../../types/Playlist";
+import { Artist } from "./../../types/Artist";
+import { Track } from "./../../types/Track";
 import axios from "axios";
 import { API_CONSTANTS } from "./constants";
 

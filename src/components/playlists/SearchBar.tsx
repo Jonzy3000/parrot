@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Search } from "../../services/spotifyApi/search";
 import { TextInput, Text, Box, Button } from "grommet";
-import { Artist, Track, Image } from "../../types/Playlist";
+import { Image } from "../../types/Image";
+import { Artist } from "../../types/Artist";
+import { Track } from "../../types/Track";
 import { FormClose, Search as SearchIcon } from "grommet-icons";
 import { Avatar, SquareAvatar } from "../common/Avatar";
 

@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../types/RootState";
 import { TrackList } from "../components/playlists/TrackListTable";
 import { Playlists } from "../services/spotifyApi/playlists";
-import { Track } from "../types/Playlist";
+import { Track } from "../types/Track";
 import { push } from "connected-react-router";
 
 export const PreviewPlaylistView = React.memo(() => {

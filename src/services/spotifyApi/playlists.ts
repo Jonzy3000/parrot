@@ -1,4 +1,5 @@
-import { Playlist, Track } from "./../../types/Playlist";
+import { Playlist } from "./../../types/Playlist";
+import { Track } from "./../../types/Track";
 import axios from "axios";
 import { API_CONSTANTS } from "./constants";
 import { PlaylistDetails } from "../../components/playlists/redux/recommendationsRedcuer";

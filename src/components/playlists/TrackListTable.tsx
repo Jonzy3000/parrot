@@ -7,7 +7,7 @@ import {
   ResponsiveContext,
   InfiniteScroll
 } from "grommet";
-import { Track } from "../../types/Playlist";
+import { Track } from "../../types/Track";
 import { Clock } from "grommet-icons";
 
 const toMMSS = (ms: number) => {
