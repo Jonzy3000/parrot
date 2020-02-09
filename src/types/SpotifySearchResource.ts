@@ -1,3 +1,5 @@
+import { SpotifyImage } from "./SpotifyImage";
+
 export interface SpotifySearchResource {
   artists: {
     href: string;
@@ -12,11 +14,7 @@ export interface SpotifySearchResource {
       genres: string[];
       href: string;
       id: string;
-      images: {
-        height: number;
-        url: string;
-        width: number;
-      }[];
+      images: SpotifyImage[];
       name: string;
       popularity: number;
       type: string;
@@ -52,23 +50,7 @@ export interface SpotifySearchResource {
           };
           href: string;
           id: string;
-          images: [
-            {
-              height: number;
-              url: string;
-              width: number;
-            },
-            {
-              height: number;
-              url: string;
-              width: number;
-            },
-            {
-              height: number;
-              url: string;
-              width: number;
-            }
-          ];
+          images: SpotifyImage[];
           name: string;
           release_date: string;
           release_date_precision: string;

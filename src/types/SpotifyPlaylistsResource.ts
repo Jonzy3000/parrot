@@ -1,3 +1,5 @@
+import { SpotifyImage } from "./SpotifyImage";
+
 export interface SpotifyPlaylistsResource {
   href: string;
   items: SpotifyPlaylistResourceWithTracks[];
@@ -11,13 +13,7 @@ interface SpotifyPlaylistResource {
   };
   href: string;
   id: string;
-  images: [
-    {
-      height: number;
-      url: string;
-      width: number;
-    }
-  ];
+  images: SpotifyImage[];
   name: string;
   owner: {
     display_name: string;
@@ -83,11 +79,7 @@ interface SpotifyTrackResource {
       };
       href: string;
       id: string;
-      images: {
-        height: number;
-        url: string;
-        width: number;
-      }[];
+      images: SpotifyImage[];
       name: string;
       release_date: string;
       release_date_precision: string;

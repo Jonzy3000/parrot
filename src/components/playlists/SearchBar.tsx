@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Search } from "../../services/spotifyApi/search";
 import { TextInput, Text, Box, Button } from "grommet";
-import { Artist, Track } from "../../types/Playlist";
+import { Artist, Track, Image } from "../../types/Playlist";
 import { FormClose, Search as SearchIcon } from "grommet-icons";
 import { Avatar, SquareAvatar } from "../common/Avatar";
 
@@ -36,9 +36,7 @@ const Tag = ({ onRemove, children }: TagProps) => {
   return tag;
 };
 
-const smallestImage = (
-  images: { height: number; width: number; url: string }[]
-) => {
+const smallestImage = (images: Image[]) => {
   return images.sort((a, b) => a.height - b.height)[0];
 };
 

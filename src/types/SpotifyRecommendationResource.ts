@@ -1,3 +1,5 @@
+import { SpotifyImage } from "./SpotifyImage";
+
 export interface SpotifyRecommendationResource {
   tracks: {
     album: {
@@ -20,23 +22,7 @@ export interface SpotifyRecommendationResource {
       };
       href: string;
       id: string;
-      images: [
-        {
-          height: number;
-          url: string;
-          width: number;
-        },
-        {
-          height: number;
-          url: string;
-          width: number;
-        },
-        {
-          height: number;
-          url: string;
-          width: number;
-        }
-      ];
+      images: SpotifyImage[];
       name: string;
       release_date: string;
       release_date_precision: string;

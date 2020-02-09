@@ -10,7 +10,7 @@ export interface Playlist {
       previous?: string;
     };
   };
-  images: [{ height: number; url: string; width: number }];
+  images: Image[];
   owner: {
     name: string;
   };
@@ -36,10 +36,16 @@ export interface Artist {
   id: string;
   url: string;
   name: string;
-  images?: { height: number; url: string; width: number }[];
+  images?: Image[];
 }
 
 export interface Album {
   name: string;
-  images: { height: number; url: string; width: number }[];
+  images: Image[];
+}
+
+export interface Image {
+  height: number;
+  url: string;
+  width: number;
 }
