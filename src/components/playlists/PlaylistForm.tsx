@@ -81,66 +81,55 @@ export const PlaylistForm = React.memo(() => {
   });
 
   return (
-    <>
-      <PlaylistFormHeader />
-      <Box
-        elevation="large"
-        pad={{ vertical: "large", horizontal: "xlarge" }}
-        round="small"
-      >
-        <Form name="New Playlist" onSubmit={onSumbit}>
-          <Grid columns={["auto"]} gap="medium">
-            <Box>
-              <Text>Name</Text>
-              <Box
-                background="light-2"
-                margin={{ bottom: "xsmall" }}
-                round="xsmall"
-                onClick={() => {}}
-              >
-                <TextInput
-                  plain
-                  placeholder="Name"
-                  name="name"
-                  ref={register({ required: true })}
-                />
-              </Box>
-              {errors.name && (
-                <Text color="status-error">Name is required</Text>
-              )}
-            </Box>
-            <Box>
-              <Text>Description</Text>
-              <Box background="light-2" round="xsmall" onClick={() => {}}>
-                <TextArea
-                  plain
-                  placeholder="Description"
-                  name="description"
-                  ref={register}
-                />
-              </Box>
-            </Box>
-            <Box>
-              <CheckBox
-                label="Make playlist public"
-                onChange={onIsPublicChange}
-                checked={isPublic}
-              />
-            </Box>
-            <Box>
-              <SearchBar
-                onSelected={(results: SearchBarResult) => setSelected(results)}
-              />
-              {errors.selected && (
-                <Text color="status-error">Please choose some suggestions</Text>
-              )}
-            </Box>
-            <Box margin={{ top: "medium" }} alignSelf="end">
-              <Button type="submit" label={"Preview my playlist"} primary />
-            </Box>
-          </Grid>
-        </Form>
-      </Box>
-    </>
+    <Form name="New Playlist" onSubmit={onSumbit}>
+      <Grid columns={["auto"]} gap="medium">
+        <Box>
+          <Text>Name</Text>
+          <Box
+            background="light-2"
+            margin={{ bottom: "xsmall" }}
+            round="xsmall"
+            onClick={() => {}}
+          >
+            <TextInput
+              plain
+              placeholder="Name"
+              name="name"
+              ref={register({ required: true })}
+            />
+          </Box>
+          {errors.name && <Text color="status-error">Name is required</Text>}
+        </Box>
+        <Box>
+          <Text>Description</Text>
+          <Box background="light-2" round="xsmall" onClick={() => {}}>
+            <TextArea
+              plain
+              placeholder="Description"
+              name="description"
+              ref={register}
+            />
+          </Box>
+        </Box>
+        <Box>
+          <CheckBox
+            label="Make playlist public"
+            onChange={onIsPublicChange}
+            checked={isPublic}
+          />
+        </Box>
+        <Box>
+          <SearchBar
+            onSelected={(results: SearchBarResult) => setSelected(results)}
+          />
+          {errors.selected && (
+            <Text color="status-error">Please choose some suggestions</Text>
+          )}
+        </Box>
+        <Box margin={{ top: "medium" }} alignSelf="end">
+          <Button type="submit" label={"Preview my playlist"} primary />
+        </Box>
+      </Grid>
+    </Form>
   );
 });
