@@ -75,9 +75,9 @@ export default App;
 
 /**
  * TODO:
- * - Make the NewPlaylist form look good in mobile
  * - Fix button on mobile
  * - Add the ability to remove songs from playlist preview
+ * - Make algorithm better
  * - Add the ability to add songs to already created playlist
  * - Tidy up the table view of a playlist
  * - Add a landing page
