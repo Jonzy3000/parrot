@@ -150,6 +150,7 @@ export const SearchBar = React.memo((props: SearchBarProps) => {
             plain
             value={searchValue}
             onChange={onSearchChange}
+            dropAlign={{ bottom: "top" }}
             placeholder="Search for some things to base your recommendation on..."
             suggestions={[
               ...suggestions.tracks.map((track: Track) => ({

@@ -17,6 +17,7 @@ import {
 } from "./redux/recommendationsRedcuer";
 import { useDispatch } from "react-redux";
 import { push } from "connected-react-router";
+import { CustomInputWrapper } from "../common/CustomInputWrapper";
 
 interface FormData {
   selected: SearchBarResult;
@@ -25,7 +26,6 @@ interface FormData {
   public: boolean;
 }
 
-//TODO make look nice
 export const PlaylistForm = React.memo(() => {
   const dispatch = useDispatch();
   const { register, handleSubmit, errors, setValue } = useForm<FormData>();
@@ -83,32 +83,23 @@ export const PlaylistForm = React.memo(() => {
     <Form name="New Playlist" onSubmit={onSumbit}>
       <Grid columns={["auto"]} gap="medium">
         <Box>
-          <Text>Name</Text>
-          <Box
-            background="light-2"
-            margin={{ bottom: "xsmall" }}
-            round="xsmall"
-            onClick={() => {}}
-          >
+          <CustomInputWrapper label="Name">
             <TextInput
-              plain
               placeholder="Name"
               name="name"
               ref={register({ required: true })}
             />
-          </Box>
+          </CustomInputWrapper>
           {errors.name && <Text color="status-error">Name is required</Text>}
         </Box>
         <Box>
-          <Text>Description</Text>
-          <Box background="light-2" round="xsmall" onClick={() => {}}>
+          <CustomInputWrapper label="Description">
             <TextArea
-              plain
               placeholder="Description"
               name="description"
               ref={register}
             />
-          </Box>
+          </CustomInputWrapper>
         </Box>
         <Box>
           <CheckBox
