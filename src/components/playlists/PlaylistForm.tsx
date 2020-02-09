@@ -17,7 +17,6 @@ import {
 } from "./redux/recommendationsRedcuer";
 import { useDispatch } from "react-redux";
 import { push } from "connected-react-router";
-import { PlaylistFormHeader } from "./PlaylistFormHeader";
 
 interface FormData {
   selected: SearchBarResult;

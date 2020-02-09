@@ -1,5 +1,4 @@
 import React from "react";
-import { PlaylistForm } from "../components/playlists/PlaylistForm";
 import { Box } from "grommet";
 import { PlaylistFormWrapper } from "../components/playlists/PlaylistFormWrapper";
 
