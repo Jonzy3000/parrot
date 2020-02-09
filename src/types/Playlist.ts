@@ -12,7 +12,7 @@ export interface Playlist {
   };
   images: Image[];
   owner: {
-    name: string;
+    name?: string;
   };
   public: boolean;
 }
@@ -23,7 +23,6 @@ export interface Track {
   name: string;
   artists: CombindedArtists;
   durationMs: number;
-  popularity: number;
   album: Album;
 }
 
@@ -45,7 +44,7 @@ export interface Album {
 }
 
 export interface Image {
-  height: number;
+  height?: number;
   url: string;
-  width: number;
+  width?: number;
 }

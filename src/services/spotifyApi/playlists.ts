@@ -1,8 +1,6 @@
-import { SpotifyPlaylistResourceWithTracks } from "./../../types/SpotifyPlaylistsResource";
 import { Playlist, Track } from "./../../types/Playlist";
 import axios from "axios";
 import { API_CONSTANTS } from "./constants";
-import { SpotifyPlaylistsResource } from "../../types/SpotifyPlaylistsResource";
 import { PlaylistDetails } from "../../components/playlists/redux/recommendationsRedcuer";
 
 export const Playlists = {
@@ -11,8 +9,12 @@ export const Playlists = {
     return axios
       .get(url)
       .then(response => response.data)
-      .then((spotifyResource: SpotifyPlaylistsResource) =>
-        spotifyResource.items.map(convertToPlayist)
+      .then(
+        (
+          spotifyResource: SpotifyApi.PagingObject<
+            SpotifyApi.PlaylistObjectFull
+          >
+        ) => spotifyResource.items.map(convertToPlayist)
       );
   },
   getPlaylist: (id: string): Promise<Playlist> => {
@@ -20,7 +22,7 @@ export const Playlists = {
     return axios
       .get(url)
       .then(response => response.data)
-      .then((spotifyResource: SpotifyPlaylistResourceWithTracks) =>
+      .then((spotifyResource: SpotifyApi.PlaylistObjectFull) =>
         convertToPlayist(spotifyResource)
       );
   },
@@ -62,9 +64,7 @@ const chunk = <T>(arr: T[], len: number): T[][] => {
   return chunks;
 };
 
-const convertToPlayist = (
-  item: SpotifyPlaylistResourceWithTracks
-): Playlist => ({
+const convertToPlayist = (item: SpotifyApi.PlaylistObjectFull): Playlist => ({
   id: item.id,
   name: item.name,
   tracks: {

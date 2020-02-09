@@ -1,4 +1,3 @@
-import { SpotifySearchResource } from "./../../types/SpotifySearchResource";
 import { Artist, Track } from "./../../types/Playlist";
 import axios from "axios";
 import { API_CONSTANTS } from "./constants";
@@ -19,32 +18,36 @@ export const Search = {
         }
       })
       .then(response => response.data)
-      .then((resource: SpotifySearchResource) => ({
-        artists: resource.artists.items.map(artist => ({
-          id: artist.id,
-          url: artist.uri,
-          name: artist.name,
-          images: artist.images
-        })),
-        tracks: resource.tracks.items.map(track => ({
-          id: track.id,
-          uri: track.uri,
-          name: track.name,
-          durationMs: track.duration_ms,
-          popularity: track.popularity,
-          album: {
-            name: track.album.name,
-            images: track.album.images
-          },
-          artists: {
-            combinedLabel: track.artists.map(artist => artist.name).join(", "),
-            individualArtists: track.artists.map(artist => ({
-              id: artist.id,
-              url: artist.href,
-              name: artist.name
-            }))
-          }
-        }))
+      .then((resource: SpotifyApi.SearchResponse) => ({
+        artists:
+          resource.artists?.items.map(artist => ({
+            id: artist.id,
+            url: artist.uri,
+            name: artist.name,
+            images: artist.images
+          })) || [],
+        tracks:
+          resource.tracks?.items.map(track => ({
+            id: track.id,
+            uri: track.uri,
+            name: track.name,
+            durationMs: track.duration_ms,
+            popularity: track.popularity,
+            album: {
+              name: track.album.name,
+              images: track.album.images
+            },
+            artists: {
+              combinedLabel: track.artists
+                .map(artist => artist.name)
+                .join(", "),
+              individualArtists: track.artists.map(artist => ({
+                id: artist.id,
+                url: artist.href,
+                name: artist.name
+              }))
+            }
+          })) || []
       }));
   }
 };

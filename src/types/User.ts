@@ -1,8 +1,8 @@
 export interface User {
   id: string;
-  name: string;
+  name?: string;
   profileImage: {
-    url: string;
+    url?: string;
   };
 }
 

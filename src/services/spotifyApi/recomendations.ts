@@ -1,4 +1,3 @@
-import { SpotifyRecommendationResource } from "./../../types/SpotifyRecommendationResource";
 import { API_CONSTANTS } from "./constants";
 import { Artist, Track } from "./../../types/Playlist";
 import axios from "axios";
@@ -31,7 +30,7 @@ export const Recommendations = {
         })}`
       )
       .then(response => response.data)
-      .then((resource: SpotifyRecommendationResource) =>
+      .then((resource: { tracks: SpotifyApi.TrackObjectFull[] }) =>
         resource.tracks.map(track => ({
           id: track.id,
           uri: track.uri,

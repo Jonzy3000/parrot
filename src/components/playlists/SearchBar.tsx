@@ -37,7 +37,7 @@ const Tag = ({ onRemove, children }: TagProps) => {
 };
 
 const smallestImage = (images: Image[]) => {
-  return images.sort((a, b) => a.height - b.height)[0];
+  return images.sort((a, b) => (a.height || 0) - (b.height || 0))[0];
 };
 
 export interface SearchBarResult {
