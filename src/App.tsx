@@ -75,9 +75,7 @@ export default App;
 
 /**
  * TODO:
- * - Tidy up api converters
- * - Tidy up types being all over the place
- * - Make the NewPlaylist form look good
+ * - Make the NewPlaylist form look good in mobile
  * - Fix button on mobile
  * - Add the ability to remove songs from playlist preview
  * - Add the ability to add songs to already created playlist
