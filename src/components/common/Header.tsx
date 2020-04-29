@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { selectUserState } from "../authentication/redux/userReducer";
 import { Avatar } from "./Avatar";
 import { push } from "connected-react-router";
-
 export const Header = React.memo(() => {
   const user = useSelector(selectUserState);
   const dispatch = useDispatch();
@@ -20,7 +19,7 @@ export const Header = React.memo(() => {
         </Heading>
       </Button>
       {user.profileImage != null && (
-        <Avatar url={`url(${user.profileImage.url})`} />
+        <Avatar url={`url(${user.profileImage?.url ? user.profileImage.url : '/empty-avatar.png'})`} />
       )}
     </GrHeader>
   );

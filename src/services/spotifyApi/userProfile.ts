@@ -13,7 +13,7 @@ export const UserProfile = Object.freeze({
         name: spotifyUser.display_name,
         id: spotifyUser.id,
         profileImage: {
-          url: spotifyUser && spotifyUser.images && spotifyUser.images[0] ? spotifyUser.images[0].url : "https://prod.wp.cdn.aws.wfu.edu/sites/202/2017/11/empty-avatar-700x480.png"
+          url:  spotifyUser.images?.[0]?.url
         }
       }));
   }
