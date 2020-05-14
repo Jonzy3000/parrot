@@ -9,7 +9,7 @@ export const ArtistItem = React.memo(
   ({ artist, onClick }: { artist: Artist; onClick?: () => void }) => (
     <Box pad="small" align="center" direction="row" onClick={onClick}>
       {artist.images !== undefined && artist.images.length > 0 && (
-        <Avatar url={`url(${smallestImage(artist.images).url})`} />
+        <Avatar url={smallestImage(artist.images).url} />
       )}
       <Box margin={{ left: "small" }}>
         <Text truncate size="medium">
