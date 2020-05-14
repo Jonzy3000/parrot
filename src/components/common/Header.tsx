@@ -1,5 +1,6 @@
 import React from "react";
-import { Header as GrHeader, Heading, Button } from "grommet";
+import { Header as GrHeader, Heading, Button, Box} from "grommet";
+import { User } from 'grommet-icons'
 import { useSelector, useDispatch } from "react-redux";
 import { selectUserState } from "../authentication/redux/userReducer";
 import { Avatar } from "./Avatar";
@@ -7,6 +8,7 @@ import { push } from "connected-react-router";
 export const Header = React.memo(() => {
   const user = useSelector(selectUserState);
   const dispatch = useDispatch();
+  console.log(user.profileImage?.url)
   return (
     <GrHeader background="brand" pad="medium" height="xsmall">
       <Button
@@ -18,9 +20,7 @@ export const Header = React.memo(() => {
           Parrrot
         </Heading>
       </Button>
-      {user.profileImage != null && (
-        <Avatar url={`url(${user.profileImage?.url ? user.profileImage.url : '/empty-avatar.png'})`} />
-      )}
+      <Avatar url={user.profileImage?.url} />
     </GrHeader>
   );
 });
