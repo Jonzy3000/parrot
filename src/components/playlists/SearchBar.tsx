@@ -8,7 +8,7 @@ import { TrackItem } from "./TrackItem";
 import { ArtistItem } from "./ArtistItem";
 
 interface TagProps {
-  onRemove: () => void;
+  onRemove?: () => void;
   children?: React.ReactNode;
 }
 
@@ -51,7 +51,7 @@ export const SearchBar = React.memo((props: SearchBarProps) => {
   const [searchValue, setSearchValue] = useState("");
   const [selected, setSelected] = useState<SearchBarResult>({
     artists: {},
-    tracks: {}
+    tracks: {},
   });
   const [suggestions, setSuggestions] = useState<{
     artists: Artist[];
@@ -73,21 +73,21 @@ export const SearchBar = React.memo((props: SearchBarProps) => {
   }, [selected, props]);
 
   const addToArtists = (artist: Artist) => {
-    setSelected(prevSelected => ({
+    setSelected((prevSelected) => ({
       ...prevSelected,
-      artists: { ...prevSelected.artists, [artist.id]: artist }
+      artists: { ...prevSelected.artists, [artist.id]: artist },
     }));
   };
 
   const addToTracks = (track: Track) => {
-    setSelected(prevSelected => ({
+    setSelected((prevSelected) => ({
       ...prevSelected,
-      tracks: { ...prevSelected.tracks, [track.id]: track }
+      tracks: { ...prevSelected.tracks, [track.id]: track },
     }));
   };
 
   const removeFromTracks = (trackId: string) => {
-    setSelected(prevSelected => {
+    setSelected((prevSelected) => {
       const copy = { ...prevSelected };
       delete copy.tracks[trackId];
       return copy;
@@ -95,7 +95,7 @@ export const SearchBar = React.memo((props: SearchBarProps) => {
   };
 
   const removeFromArtists = (artistId: string) => {
-    setSelected(prevSelected => {
+    setSelected((prevSelected) => {
       const copy = { ...prevSelected };
       delete copy.artists[artistId];
       return copy;
@@ -129,7 +129,7 @@ export const SearchBar = React.memo((props: SearchBarProps) => {
           </Box>
         </Tag>
       </Box>
-    ))
+    )),
   ];
 
   return (
@@ -160,7 +160,7 @@ export const SearchBar = React.memo((props: SearchBarProps) => {
                     track={track}
                     onClick={() => addToTracks(track)}
                   />
-                )
+                ),
               })),
               ...suggestions.artists.map((artist: Artist) => ({
                 label: (
@@ -169,8 +169,8 @@ export const SearchBar = React.memo((props: SearchBarProps) => {
                     key={artist.id}
                     onClick={() => addToArtists(artist)}
                   />
-                )
-              }))
+                ),
+              })),
             ]}
           />
         </Box>

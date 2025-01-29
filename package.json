@@ -27,7 +27,7 @@
     "react-router-dom": "^5.1.2",
     "source-map-explorer": "^2.1.2",
     "styled-components": "^4.4.1",
-    "typescript": "^3.7.3",
+    "typescript": "^5.7.3",
     "vite": "^6.0.11",
     "vite-tsconfig-paths": "^5.1.4"
   },
@@ -52,6 +52,6 @@
     ]
   },
   "devDependencies": {
-    "@types/spotify-api": "0.0.2"
+    "@types/spotify-api": "0.0.25"
   }
 }
