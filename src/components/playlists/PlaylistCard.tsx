@@ -21,9 +21,7 @@ export const PlaylistCard = React.memo(({ id }: Props) => {
       onClick={() => dispatch(push(`/playlists/${playlist.id}`))}
     >
       <Box height="small">
-        {playlist.images[0] && (
-          <Image src={playlist.images[0].url} fit="cover" />
-        )}
+        {playlist.images && <Image src={playlist.images[0].url} fit="cover" />}
       </Box>
       <Box pad="medium" justify="center">
         <Heading level="2" color="dark-1" margin={{ bottom: "xsmall" }}>

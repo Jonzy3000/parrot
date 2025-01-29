@@ -37,8 +37,8 @@ export class ImplicitGrant {
   }
 
   redirectToLoginPortal() {
-    var client_id = process.env.REACT_APP_SPOTIFY_API_CLIENT_SECRET; // Your client id
-    var redirect_uri = `${process.env.REACT_APP_URL}/callback`; // Your redirect uri
+    var client_id = import.meta.env.VITE_APP_SPOTIFY_API_CLIENT_SECRET; // Your client id
+    var redirect_uri = `${import.meta.env.VITE_APP_URL}/callback`; // Your redirect uri
     var state = this.generateRandomString(16);
 
     localStorage.setItem(this.stateKey, state);
