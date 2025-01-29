@@ -24,7 +24,13 @@ export const PlaylistCard = React.memo(({ id }: Props) => {
         {playlist.images && <Image src={playlist.images[0].url} fit="cover" />}
       </Box>
       <Box pad="medium" justify="center">
-        <Heading level="2" color="dark-1" margin={{ bottom: "xsmall" }}>
+        <Heading
+          level="2"
+          color="dark-1"
+          margin={{ bottom: "xsmall" }}
+          size="small"
+          truncate
+        >
           {playlist.name}
         </Heading>
         <Text weight={100} size="large">
